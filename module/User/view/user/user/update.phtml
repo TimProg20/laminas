@@ -1,0 +1,71 @@
+<div class="row justify-content-center">
+  <div class="col-sm-6">
+  <?php
+  $title = 'Edit user';
+  $this->headTitle($title);
+  ?>
+  <h1> <?= $this->translate($title) ?> </h1>
+  <?php
+  
+  $name = $form->get('name');
+  $name->setAttribute('class', 'form-control');
+
+  $surname = $form->get('surname');
+  $surname->setAttribute('class', 'form-control');
+
+  $furname = $form->get('furname');
+  $furname->setAttribute('class', 'form-control');
+
+  $birthday = $form->get('birthday');
+  $birthday->setAttribute('class', 'form-control');
+
+  $idBirthplace = $form->get('id_birthplace');
+  $idBirthplace->setAttribute('class', 'form-control');
+
+  $submit = $form->get('submit');
+  $submit->setAttribute('class', 'btn btn-primary');
+
+  $form->setAttribute('action', $this->url('user', [
+      'action' => 'update',
+      'id'     => $id,
+  ]));
+  $form->prepare();
+
+  echo $this->form()->openTag($form);
+  ?>
+  <div class="form-group">
+        <?= $this->formLabel($name) ?>
+        <?= $this->formElement($name) ?>
+        <?= $this->formElementErrors()->render($name, ['class' => 'help-block']) ?>
+    </div>
+
+    <div class="form-group">
+        <?= $this->formLabel($surname) ?>
+        <?= $this->formElement($surname) ?>
+        <?= $this->formElementErrors()->render($surname, ['class' => 'help-block']) ?>
+    </div>
+
+    <div class="form-group">
+        <?= $this->formLabel($furname) ?>
+        <?= $this->formElement($furname) ?>
+        <?= $this->formElementErrors()->render($furname, ['class' => 'help-block']) ?>
+    </div>
+
+    <div class="form-group">
+        <?= $this->formLabel($birthday) ?>
+        <?= $this->formElement($birthday) ?>
+        <?= $this->formElementErrors()->render($birthday, ['class' => 'help-block']) ?>
+    </div>
+
+    <div class="form-group">
+        <?= $this->formLabel($idBirthplace) ?>
+        <?= $this->formElement($idBirthplace) ?>
+        <?= $this->formElementErrors()->render($idBirthplace, ['class' => 'help-block']) ?>
+    </div>
+
+  <?php
+  echo $this->formSubmit($submit);
+  echo $this->form()->closeTag();
+  ?>
+  </div>
+</div>

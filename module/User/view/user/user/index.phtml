@@ -1,0 +1,35 @@
+<?php
+
+$title = 'Users';
+$this->headTitle($title);
+?>
+<h1> <?= $this->translate($title) ?> </h1>
+<p>
+    <a href="<?= $this->url('user', ['action' => 'create']) ?>" class="btn btn-success">  <?= $this->translate('Create') ?> </a>
+</p>
+
+<table class="table">
+<tr>
+    <th> <?= $this->translate('Name') ?> </th>
+    <th> <?= $this->translate('Surname') ?> </th>
+    <th> <?= $this->translate('Furname') ?> </th>
+    <th> <?= $this->translate('Birthday') ?> </th>
+    <th> <?= $this->translate('Birthplace') ?> </th>
+    <th>&nbsp;</th>
+    <th>&nbsp;</th>
+</tr>
+<?php foreach ($users as $user) : ?>
+    <tr>
+        <td><?= $this->escapeHtml($user->name) ?></td>
+        <td><?= $this->escapeHtml($user->surname) ?></td>
+        <td><?= $this->escapeHtml($user->furname) ?></td>
+        <td><?= $this->dateFormat(new DateTime(), IntlDateFormatter::SHORT, IntlDateFormatter::NONE, $lang) ?></td>
+        <td><?= $this->translate($user->birthplace_name) ?></td>
+        <td><a href="<?= $this->url('user-department', ['id' => $user->id]) ?>"> <?= $this->translate('Departments') ?> </a></td>
+        <td>
+            <a href="<?= $this->url('user', ['action' => 'update', 'id' => $user->id]) ?>" class="mr-2"> <?= $this->translate('Edit') ?> </a>
+            <a href="<?= $this->url('user', ['action' => 'delete', 'id' => $user->id]) ?>"> <?= $this->translate('Delete') ?> </a>
+        </td>
+    </tr>
+<?php endforeach; ?>
+</table>
