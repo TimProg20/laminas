@@ -17,6 +17,9 @@ use Laminas\Session\Container;
 $localSession = new Container('local');
 
 return [
+    'db' => [
+        'driver' => 'Pdo',
+    ],
     'translator' => [
         'locale' => $localSession->lang."s",
         'translation_file_patterns' => [
